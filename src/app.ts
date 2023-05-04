@@ -6,9 +6,7 @@ dotenv.config();
 
 const app: Express = express();
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
+app.use(morgan('dev'));
 
 app.get('/', (_, res: Response) => {
   res.json({ message: 'Working' });
