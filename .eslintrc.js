@@ -8,12 +8,13 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    project: './tsconfig.json',
+    tsconfigRootDir: './',
   },
   plugins: ['@typescript-eslint', 'prettier', 'import'],
   rules: {
@@ -32,7 +33,13 @@ module.exports = {
         allowSeparatedGroups: true,
       },
     ],
-
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksConditionals: false,
+        checksVoidReturn: false,
+      },
+    ],
     'import/no-unresolved': 'error',
     'import/order': [
       'error',
@@ -60,6 +67,9 @@ module.exports = {
     'import/resolver': {
       typescript: {
         project: './tsconfig.json',
+      },
+      node: {
+        extensions: ['.js', '.ts'],
       },
     },
   },

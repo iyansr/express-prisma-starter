@@ -14,3 +14,9 @@ declare global {
     interface ProcessEnv extends z.infer<typeof envVars> {}
   }
 }
+
+export type FilterParams = {
+  page?: number;
+  pageSize?: number;
+  query?: string;
+};
