@@ -1,8 +1,5 @@
-import { readFile } from 'fs/promises';
-import path from 'path';
-
-import { compare, genSalt, hash } from 'bcrypt';
-import { sign, verify } from 'jsonwebtoken';
+import { compare, genSalt, hash } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
 
 import prisma from '@app/shared/libs/prisma';
 
@@ -31,10 +28,8 @@ export async function comparePassword(password: string, hashedPassword: string):
   return isPasswordValid;
 }
 
-export async function generatJWT(email: string) {
-  const rootPath = path.resolve(__dirname, '../../');
-  const key = await readFile(path.join(rootPath, 'private.pem'), 'utf8');
-  const token = sign({ email }, key, {
+export function generatJWT(email: string) {
+  const token = sign({ email }, process.env.PRIVATE_KEY, {
     algorithm: 'RS256',
     expiresIn: '7d',
     issuer: 'express-app',

@@ -1,6 +1,3 @@
-import { readFile } from 'fs/promises';
-import path from 'path';
-
 import type { NextFunction, Request, Response } from 'express';
 import createHttpError from 'http-errors';
 import { type JwtPayload, verify } from 'jsonwebtoken';
@@ -9,13 +6,11 @@ export interface CustomRequest extends Request {
   token: string | JwtPayload;
 }
 
-async function authenticateToken(req: Request, res: Response, next: NextFunction) {
+function authenticateToken(req: Request, res: Response, next: NextFunction) {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '') ?? '';
 
-    const rootPath = path.resolve(__dirname, '../../../');
-    const key = await readFile(path.join(rootPath, 'public.pem'), 'utf8');
-    const decoded = verify(token, key, {
+    const decoded = verify(token, process.env.PRIVATE_KEY, {
       algorithms: ['RS256'],
       issuer: 'express-app',
     });

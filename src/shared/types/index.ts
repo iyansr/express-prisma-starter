@@ -5,6 +5,7 @@ import { z } from 'zod';
 const envVars = z.object({
   NODE_ENV: z.enum(['development', 'production']),
   DATABASE_URL: z.string(),
+  PRIVATE_KEY: z.string(),
 });
 
 envVars.parse(process.env);

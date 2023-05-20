@@ -1,4 +1,4 @@
-import { type User } from '@prisma/client';
+import type { User } from '@prisma/client';
 
 import prisma from '@app/shared/libs/prisma';
 import type { FilterParams } from '@app/shared/types';
