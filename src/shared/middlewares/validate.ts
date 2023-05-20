@@ -1,5 +1,4 @@
 import type { NextFunction, Request, Response } from 'express';
-import createHttpError from 'http-errors';
 import { type AnyZodObject, ZodError } from 'zod';
 
 const validate = (schema: AnyZodObject) => (req: Request, res: Response, next: NextFunction) => {

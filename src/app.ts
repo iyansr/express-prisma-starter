@@ -13,7 +13,7 @@ const app: Application = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-router(app);
+app.use('/api', router);
 
 app.get('/', (_, res: Response) => {
   res.json({ message: 'Working', environtment: process.env.NODE_ENV });

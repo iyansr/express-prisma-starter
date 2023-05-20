@@ -1,9 +1,11 @@
-import type { Application } from 'express';
+import { Router } from 'express';
 
 import authRoute from './auth/auth.route';
 import userRoute from './users/user.route';
 
-export default function router(app: Application) {
-  app.use('/api/users', userRoute);
-  app.use('/api/auth', authRoute);
-}
+const router = Router();
+
+router.use('/users', userRoute);
+router.use('/auth', authRoute);
+
+export default router;

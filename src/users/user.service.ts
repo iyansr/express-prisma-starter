@@ -1,5 +1,15 @@
+import { type User } from '@prisma/client';
+
 import prisma from '@app/shared/libs/prisma';
 import type { FilterParams } from '@app/shared/types';
+
+// Exclude keys from user
+function exclude<User, Key extends keyof User>(user: User, keys: Key[]): Omit<User, Key> {
+  for (const key of keys) {
+    delete user[key];
+  }
+  return user;
+}
 
 export const allUsers = async (params: FilterParams) => {
   const { page = 1, pageSize = 10 } = params;
@@ -10,6 +20,11 @@ export const allUsers = async (params: FilterParams) => {
     prisma.user.findMany({
       orderBy: {
         createdAt: 'desc',
+      },
+      select: {
+        id: true,
+        email: true,
+        createdAt: true,
       },
       take: Number(pageSize),
       skip,
@@ -29,7 +44,7 @@ export const detailUser = async (id: string) => {
     },
   });
 
-  return user;
+  return exclude<User, keyof User>(user as User, ['password']);
 };
 
 export const userByEmail = async (email: string) => {
