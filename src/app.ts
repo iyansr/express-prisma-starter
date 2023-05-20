@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import express, { type Application, type NextFunction, type Request, type Response } from 'express';
 import createHttpError, { isHttpError } from 'http-errors';
@@ -10,6 +11,7 @@ dotenv.config();
 const app: Application = express();
 
 app.use(morgan('dev'));
+app.use(bodyParser.json());
 
 router(app);
 

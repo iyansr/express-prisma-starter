@@ -31,3 +31,11 @@ export const detailUser = async (id: string) => {
 
   return user;
 };
+
+export const userByEmail = async (email: string) => {
+  return prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+};
