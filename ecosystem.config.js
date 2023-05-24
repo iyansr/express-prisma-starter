@@ -21,7 +21,7 @@ module.exports = {
       host: '103.175.216.123',
       key: 'deploy.key',
       ref: 'origin/main',
-      repo: 'https://github.com/username/myapp',
+      repo: 'https://github.com/iyansr/express-prisma-starter',
       path: '/home/iyansr/express-app',
       'post-deploy':
         'yarn install && yarn build && pm2 startOrRestart ecosystem.config.js --env production',
