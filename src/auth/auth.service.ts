@@ -1,4 +1,4 @@
-import { compare, genSalt, hash } from 'bcryptjs';
+import * as argon2 from 'argon2';
 import { sign } from 'jsonwebtoken';
 
 import prisma from '@app/shared/libs/prisma';
@@ -15,15 +15,13 @@ export async function register({ password, email }: LoginSchema) {
 }
 
 export async function hashPassword(password: string): Promise<string> {
-  const saltRounds = 10;
-  const salt = await genSalt(saltRounds);
-  const hashedPassword = await hash(password, salt);
+  const hashedPassword = await argon2.hash(password);
 
   return hashedPassword;
 }
 
 export async function comparePassword(password: string, hashedPassword: string): Promise<boolean> {
-  const isPasswordValid = await compare(password, hashedPassword);
+  const isPasswordValid = await argon2.verify(hashedPassword, password);
 
   return isPasswordValid;
 }

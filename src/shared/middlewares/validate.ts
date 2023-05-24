@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { type AnyZodObject, ZodError } from 'zod';
+import { type AnyZodObject, ZodError, type ZodIssue } from 'zod';
 
 const validate = (schema: AnyZodObject) => (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -15,7 +15,13 @@ const validate = (schema: AnyZodObject) => (req: Request, res: Response, next: N
     if (err instanceof ZodError) {
       return res.status(400).json({
         error: true,
-        message: err,
+        message: err.flatten((issue: ZodIssue) => {
+          return {
+            message: issue.message,
+            errorCode: issue.code,
+            path: issue.path.join('.'),
+          };
+        }),
       });
     }
     next();

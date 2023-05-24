@@ -46,7 +46,7 @@ export const login: RequestHandler<unknown, unknown, LoginSchema> = async (req, 
       return next(createHttpError(400, 'Wrong email or password'));
     }
 
-    const token = await authService.generatJWT(email);
+    const token = authService.generatJWT(email);
 
     return res.status(200).json({
       data: {
