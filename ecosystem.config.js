@@ -19,7 +19,7 @@ module.exports = {
     production: {
       user: 'iyansr',
       host: '103.175.216.123',
-      key: 'deploy.key',
+      key: '/Users/pintu/Iyan/Server/iyan.pem',
       ref: 'origin/main',
       repo: 'https://github.com/iyansr/express-prisma-starter',
       path: '/home/iyansr/express-app',
