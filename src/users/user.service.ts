@@ -1,7 +1,7 @@
 import type { User } from '@prisma/client';
 
-import prisma from '@app/shared/libs/prisma';
-import type { FilterParams } from '@app/shared/types';
+import prisma from '../shared/libs/prisma';
+import type { FilterParams } from '../shared/types';
 
 // Exclude keys from user
 function exclude<User, Key extends keyof User>(user: User, keys: Key[]): Omit<User, Key> {

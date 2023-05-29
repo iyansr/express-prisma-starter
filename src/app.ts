@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import express, { type Application, type NextFunction, type Request, type Response } from 'express';
+import helmet from 'helmet';
 import createHttpError, { isHttpError } from 'http-errors';
 import morgan from 'morgan';
 
@@ -10,6 +11,7 @@ dotenv.config();
 
 const app: Application = express();
 
+app.use(helmet());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
