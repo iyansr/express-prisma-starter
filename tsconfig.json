@@ -16,12 +16,6 @@
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "@app/*": [
-        "./src/*"
-      ]
-    }
   },
   "include": [
     "src/**/*",
