@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import * as userController from './user.controller';
-import authenticateToken from '../shared/middlewares/verifyToken';
+import authenticateToken from '@app/shared/middlewares/verifyToken';
+import * as userController from '@app/users/user.controller';
 
 const userRoute = Router();
 

@@ -16,14 +16,22 @@
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "outDir": "dist",
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": [
+        "./src/*"
+      ]
+    }
   },
   "include": [
-    "src/**/*",
-    "index.ts"
+    "src/**/*.ts",
+    "src/**/*.json",
   ],
   "exclude": [
     "node_modules",
     ".dev",
-    "dist"
+    "dist",
+    ".env"
   ]
 }

@@ -1,9 +1,10 @@
 import { Router } from 'express';
 
+import { loginRegisterRateLimit } from '@app/shared/middlewares/rate-limit';
+import validate from '@app/shared/middlewares/validate';
+
 import * as authController from './auth.controller';
 import { loginSchema } from './auth.schema';
-import { loginRegisterRateLimit } from '../shared/middlewares/rate-limit';
-import validate from '../shared/middlewares/validate';
 
 const authRoute = Router();
 

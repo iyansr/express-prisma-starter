@@ -1,0 +1,31 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "dynamicImport": true,
+      "decorators": true
+    },
+    "transform": {
+      "legacyDecorator": true,
+      "decoratorMetadata": true
+    },
+    "target": "esnext",
+    "externalHelpers": false,
+    "keepClassNames": true,
+    "loose": false,
+    "minify": {
+      "compress": true,
+      "mangle": false
+    },
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  }
+}

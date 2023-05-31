@@ -2,9 +2,10 @@ import type { RequestHandler } from 'express';
 import createHttpError from 'http-errors';
 import { omit } from 'lodash';
 
+import { userByEmail } from '@app/users/user.service';
+
 import { type LoginSchema } from './auth.schema';
 import * as authService from './auth.service';
-import { userByEmail } from '../users/user.service';
 
 export const register: RequestHandler<unknown, unknown, LoginSchema> = async (req, res, next) => {
   try {

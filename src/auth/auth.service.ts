@@ -1,8 +1,9 @@
 import * as argon2 from 'argon2';
 import { sign } from 'jsonwebtoken';
 
+import prisma from '@app/shared/libs/prisma';
+
 import type { LoginSchema } from './auth.schema';
-import prisma from '../shared/libs/prisma';
 
 export async function register({ password, email }: LoginSchema) {
   return prisma.user.create({
